@@ -29,6 +29,8 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
+doctype_js = {"Expense Claim" : "public/js/expense_claim.js"}
+# doctype_js = {"Purchase Order" : "server_script/purchase_receipt/purchase_receipt.js"}
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -102,13 +104,28 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# }
+    "Purchase Order": {
+		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
+        "on_cancel": "precihole.public.py.purchase_order.update_indent_progress_after_cancel"
+	},
+	"Expense Claim": {
+		"before_insert": "precihole.public.py.expense_claim.add_adv"
+	},
+    "Purchase Receipt": {
+		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
+        "on_cancel": "precihole.public.py.purchase_order.update_indent_progress_after_cancel"
+	},
+    "Purchase Invoice": {
+		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
+        "on_cancel": "precihole.public.py.purchase_order.update_indent_progress_after_cancel"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

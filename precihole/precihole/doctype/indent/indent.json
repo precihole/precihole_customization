@@ -1,0 +1,267 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "IN-.####",
+ "creation": "2022-12-06 11:58:06.640100",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "department",
+  "purpose",
+  "column_break_4",
+  "expense_approver",
+  "posting_date",
+  "required_by",
+  "amended_from",
+  "section_break_8",
+  "items",
+  "section_break_10",
+  "total_amount",
+  "column_break_11",
+  "total_qty",
+  "section_break_14",
+  "purchase",
+  "column_break_12",
+  "admin",
+  "column_break_14",
+  "travel",
+  "status_section",
+  "order_status",
+  "receive_status",
+  "billing_status",
+  "cancel_reason",
+  "hod_approver",
+  "manager_approver",
+  "accepted_by",
+  "rejected_by",
+  "last_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "From Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Indent",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "items",
+   "options": "Indent Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "purchase",
+   "fieldtype": "Check",
+   "label": "Purchase"
+  },
+  {
+   "default": "0",
+   "fieldname": "admin",
+   "fieldtype": "Check",
+   "label": "Admin"
+  },
+  {
+   "default": "0",
+   "fieldname": "travel",
+   "fieldtype": "Check",
+   "label": "Travel"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_qty",
+   "fieldtype": "Currency",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "employee name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "expense_approver",
+   "fieldtype": "Data",
+   "label": "expense approver",
+   "read_only": 1
+  },
+  {
+   "default": "Not Ordered",
+   "fieldname": "order_status",
+   "fieldtype": "Select",
+   "label": "Order Status",
+   "options": "\nNot Ordered\nPartially Ordered\nFully Ordered",
+   "read_only": 1
+  },
+  {
+   "default": "Not Received",
+   "fieldname": "receive_status",
+   "fieldtype": "Select",
+   "label": "Receive Status",
+   "options": "\nNot Received\nPartially Received\nFully Received",
+   "read_only": 1
+  },
+  {
+   "default": "Not Billed",
+   "fieldname": "billing_status",
+   "fieldtype": "Select",
+   "label": "Billing Status",
+   "options": "\nNot Billed\nPartially Billed\nFully Billed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  },
+  {
+   "fieldname": "required_by",
+   "fieldtype": "Date",
+   "label": "Required By",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.docstatus == 1 || doc.docstatus == 2",
+   "fieldname": "cancel_reason",
+   "fieldtype": "Data",
+   "label": "cancel reason"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Small Text",
+   "label": "purpose",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hod_approver",
+   "fieldtype": "Data",
+   "label": "Approved By",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "manager_approver",
+   "fieldtype": "Data",
+   "label": "Approved By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accepted_by",
+   "fieldtype": "Data",
+   "label": "Accepted By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rejected_by",
+   "fieldtype": "Data",
+   "label": "Rejected By",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "last_status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "last status",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Purchase Order",
+   "link_fieldname": "indent_name"
+  }
+ ],
+ "modified": "2022-12-27 11:42:55.092011",
+ "modified_by": "Administrator",
+ "module": "Precihole",
+ "name": "Indent",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,297 @@
+{
+ "actions": [],
+ "autoname": "CR-.####",
+ "creation": "2022-12-26 15:30:49.306041",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_short_name",
+  "item_code_description",
+  "doc_state",
+  "requested_item_code",
+  "comments_ro",
+  "hsn",
+  "uom",
+  "column_break_cr1",
+  "item_tax_rate",
+  "item_purpose",
+  "request_by_department",
+  "ref_website_link",
+  "ref_attachment",
+  "section_break_13",
+  "expense_account",
+  "assets",
+  "column_break_18",
+  "income_account",
+  "category",
+  "design_section",
+  "create_item",
+  "new_item_code",
+  "column_break_12",
+  "item_code_comments",
+  "indent_c",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_short_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Short Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code_description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Description",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval : doc.workflow_state === \"Pending\"",
+   "fieldname": "doc_state",
+   "fieldtype": "Data",
+   "ignore_user_permissions": 1,
+   "label": "State",
+   "mandatory_depends_on": "eval : doc.workflow_state === \"Pending\"",
+   "permlevel": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "requested_item_code",
+   "fieldtype": "Data",
+   "label": "Requested Item Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "comments_ro",
+   "fieldtype": "Small Text",
+   "label": "Comment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hsn",
+   "fieldtype": "Link",
+   "label": "HSN",
+   "options": "GST HSN Code"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "column_break_cr1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_tax_rate",
+   "fieldtype": "Select",
+   "label": "Item Tax Rate",
+   "options": "\n5%\n6%\n12%\n18%\n28%"
+  },
+  {
+   "fieldname": "item_purpose",
+   "fieldtype": "Data",
+   "label": "Purpose"
+  },
+  {
+   "fieldname": "request_by_department",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Request By Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "ref_website_link",
+   "fieldtype": "Data",
+   "label": "Reference Website Link"
+  },
+  {
+   "fieldname": "ref_attachment",
+   "fieldtype": "Attach",
+   "label": "Attach Reference Document / Screen Shot"
+  },
+  {
+   "depends_on": "eval:((doc.workflow_state == \"Account Review\") || (doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\")|| (doc.workflow_state == \"Clarify\") || (doc.docstatus == 2))",
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Account Department",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\") || (doc.docstatus == 2))"
+  },
+  {
+   "default": "0",
+   "fieldname": "assets",
+   "fieldtype": "Check",
+   "label": "Fixed Assets",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\") || (doc.docstatus == 2))"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": " Income Account",
+   "options": "Account",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\") || (doc.docstatus == 2))"
+  },
+  {
+   "depends_on": "assets",
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "mandatory_depends_on": "assets",
+   "options": "Asset Category",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\") || (doc.docstatus == 2))"
+  },
+  {
+   "depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\")|| (doc.workflow_state == \"Not Saved\") || (doc.docstatus == 2))",
+   "fieldname": "design_section",
+   "fieldtype": "Section Break",
+   "label": "Design Department",
+   "permlevel": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "create_item",
+   "fieldtype": "Check",
+   "label": "New Item",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "new_item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "mandatory_depends_on": "eval:((doc.workflow_state == \"Approved\") || (doc.workflow_state == \"Code Request\") || (doc.workflow_state == \"Created\") || (doc.workflow_state == \"Rejected\") || (doc.docstatus == 2))",
+   "options": "Item",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "item_code_comments",
+   "fieldtype": "Small Text",
+   "label": "Comments",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "indent_c",
+   "fieldtype": "Link",
+   "label": "Indent",
+   "options": "Indent"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Item Code Request",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-12-26 15:30:49.306041",
+ "modified_by": "Administrator",
+ "module": "Precihole",
+ "name": "Item Code Request",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manufacturing Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "item_short_name",
+ "track_changes": 1,
+ "track_seen": 1
+}
