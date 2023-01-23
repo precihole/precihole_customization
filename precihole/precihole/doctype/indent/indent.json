@@ -116,7 +116,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "total_qty",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "label": "Total Quantity",
    "read_only": 1
   },
@@ -202,15 +202,12 @@
   {
    "fieldname": "hod_approver",
    "fieldtype": "Data",
-   "label": "Approved By",
-   "read_only": 1
+   "label": "Approved By"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "manager_approver",
    "fieldtype": "Data",
-   "label": "Approved By",
-   "read_only": 1
+   "label": "Approved By"
   },
   {
    "fieldname": "accepted_by",
@@ -235,13 +232,8 @@
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [
-  {
-   "link_doctype": "Purchase Order",
-   "link_fieldname": "indent_name"
-  }
- ],
- "modified": "2022-12-27 11:42:55.092011",
+ "links": [],
+ "modified": "2023-01-23 16:21:26.371575",
  "modified_by": "Administrator",
  "module": "Precihole",
  "name": "Indent",

@@ -7,7 +7,7 @@ from frappe.model.document import Document
 
 class Indent(Document):
 	def before_insert(doc):
-		frappe.msgprint(frappe.utils.get_url())
+		#frappe.msgprint(frappe.utils.get_url())
 		employee = frappe.db.get_value('Employee', {'company_email': frappe.session.user}, 'name')
 		if employee:
 			expense_approver = frappe.db.get_value('Employee', {'company_email': frappe.session.user}, 'expense_approver')
@@ -28,6 +28,7 @@ class Indent(Document):
 			frappe.throw('item is mandatory')
 		for p in doc.items:
 			p.is_received = 0
+
 	def before_save(doc):
 		for i in doc.items:
 			if i.rate == 0:
@@ -47,6 +48,37 @@ class Indent(Document):
 			frappe.throw('Required By date is not before than posting date.')
 		if not len(doc.items) > 0:
 			frappe.throw('item is mandatory')
+		
+
+		#update
+		#first approval
+		if doc.workflow_state == 'Accept / Reassign' and doc.total_amount < 2000:
+			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
+			doc.hod_approver = full_name
+			#frappe.db.set_value('Indent',doc.name,'hod_approver', full_name)
+			#doc.reload()
+			
+		elif doc.workflow_state == 'Management Approval Pending' and doc.total_amount >= 2000:
+			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
+			doc.hod_approver = full_name
+			#frappe.db.set_value('Indent',doc.name,'manager_approver',full_name)
+			#doc.reload()
+		elif doc.workflow_state == 'Accept / Reassign' and doc.total_amount >= 2000:
+			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
+			doc.manager_approver = full_name
+			#frappe.db.set_value('Indent',doc.name,'hod_approver', full_name)
+			#doc.reload()
+		
+	def before_submit(doc):
+		#accept
+		if doc.workflow_state == 'Approved':
+			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
+			doc.accepted_by = full_name
+		elif doc.workflow_state == 'Rejected':
+		#rejected
+			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
+			doc.rejected_by = full_name
+
 	def before_update_after_submit(doc):
 		total = 0
 		qty = 0
@@ -57,31 +89,6 @@ class Indent(Document):
 		doc.total_amount = total
 		doc.total_qty = qty
 	def on_update_after_submit(doc):
-		#first approval
-		if doc.workflow_state == 'Updation Pending':
-			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
-			frappe.db.set_value('Indent',doc.name,'hod_approver', full_name)
-			doc.reload()
-		elif doc.workflow_state == 'Rejected':
-		#rejected
-			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
-			frappe.db.set_value('Indent',doc.name,'rejected_by', full_name)
-			doc.reload()
-		
-		elif doc.workflow_state == 'Accept / Reassign' and doc.total_amount >= 2000:
-			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
-			frappe.db.set_value('Indent',doc.name,'manager_approver',full_name)
-			doc.reload()
-			
-		#accept
-		elif doc.workflow_state == 'Approved' and doc.purchase == 1:
-			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
-			frappe.db.set_value('Indent',doc.name,'accepted_by',full_name)
-			doc.reload()
-		elif doc.workflow_state == 'To Receive and Bill' and doc.admin == 1:
-			full_name = frappe.db.get_value('User', frappe.session.user, 'full_name')
-			frappe.db.set_value('Indent',doc.name,'accepted_by',full_name)
-			doc.reload()
 
 
 		#manually received in indent

@@ -58,7 +58,7 @@ frappe.ui.form.on('Indent', {
             }, __("Create"));
 
         }
-        else if(frm.doc.workflow_state == 'To Receive and Bill' && (frm.doc.admin == 1 || frm.doc.purchase == 1)){
+        if(frm.doc.workflow_state == 'Approved' && (frm.doc.admin == 1 || frm.doc.purchase == 1)){
             cur_frm.add_custom_button(__("Employee Advance"), function() {
                 var indent = frm.doc.name 
                 frappe.run_serially([ 
@@ -132,7 +132,7 @@ frappe.ui.form.on('Indent', {
             var df = frappe.meta.get_docfield("Indent Item","rate", cur_frm.doc.name);
             df.allow_on_submit = 0;
         }
-        if(frm.doc.workflow_state == 'To Receive and Bill'){
+        if(frm.doc.workflow_state == 'Approved'){
             var df = frappe.meta.get_docfield("Indent Item","is_received", cur_frm.doc.name);
             df.read_only = 0;
         }
