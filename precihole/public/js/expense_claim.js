@@ -1,3 +1,14 @@
+frappe.ui.form.on('Expense Claim',  {
+    refresh: function(frm) {
+        frm.set_query('employee', function() {
+			return {
+				'filters': {
+					'name': ['=', '']
+				}
+			};
+		});
+    }
+});
 // frappe.ui.form.on('Expense Claim',  {
 //     refresh: function(frm) {
 //         //frappe.msgprint('child.indent_name')
