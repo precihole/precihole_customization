@@ -1,0 +1,4 @@
+[pre_model_sync]
+
+[post_model_sync]
+precihole.precihole.doctype.user_approvers.patches.add_approvers

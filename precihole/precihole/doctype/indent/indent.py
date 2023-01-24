@@ -95,16 +95,16 @@ class Indent(Document):
 		is_received_chk=[]
 		for j in doc.items:
 			is_received_chk.append(j.is_received)
-		if is_received_chk.count(1) > 0 and is_received_chk.count(0) > 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Partially Received'):
+		if is_received_chk.count(1) > 0 and is_received_chk.count(0) > 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Approved' or doc.workflow_state == 'Partially Received'):
 			frappe.db.set_value('Indent', doc.name , 'receive_status', 'Partially Received')
 			frappe.msgprint("Status: "+ frappe.bold('Partially Received'))
 			doc.reload()
-		elif is_received_chk.count(1) > 0 and is_received_chk.count(0) == 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Partially Received'):
+		elif is_received_chk.count(1) > 0 and is_received_chk.count(0) == 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Approved' or doc.workflow_state == 'Partially Received'):
 			frappe.db.set_value('Indent', doc.name , 'receive_status', 'Fully Received')
 			frappe.db.set_value('Indent', doc.name , 'workflow_state', 'To Bill')
 			frappe.msgprint("Status: "+ frappe.bold('Fully Received'))
 			doc.reload()
-		elif is_received_chk.count(0) > 0 and is_received_chk.count(1) == 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Partially Received'):
+		elif is_received_chk.count(0) > 0 and is_received_chk.count(1) == 0 and (doc.workflow_state == 'To Receive and Bill' or doc.workflow_state == 'Approved' or doc.workflow_state == 'Partially Received'):
 			frappe.db.set_value('Indent', doc.name , 'receive_status', 'Not Received')
 			doc.reload()
 

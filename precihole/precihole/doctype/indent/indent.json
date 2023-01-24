@@ -45,8 +45,9 @@
    "fieldname": "department",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "From Department",
+   "label": "For Department",
    "options": "Department",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)",
    "reqd": 1
   },
   {
@@ -78,25 +79,29 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "items",
-   "options": "Indent Item"
+   "options": "Indent Item",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)"
   },
   {
    "default": "0",
    "fieldname": "purchase",
    "fieldtype": "Check",
-   "label": "Purchase"
+   "label": "Purchase",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)"
   },
   {
    "default": "0",
    "fieldname": "admin",
    "fieldtype": "Check",
-   "label": "Admin"
+   "label": "Admin",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)"
   },
   {
    "default": "0",
    "fieldname": "travel",
    "fieldtype": "Check",
-   "label": "Travel"
+   "label": "Travel",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)"
   },
   {
    "fieldname": "column_break_12",
@@ -153,6 +158,7 @@
   },
   {
    "default": "Not Ordered",
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "order_status",
    "fieldtype": "Select",
    "label": "Order Status",
@@ -161,6 +167,7 @@
   },
   {
    "default": "Not Received",
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "receive_status",
    "fieldtype": "Select",
    "label": "Receive Status",
@@ -169,6 +176,7 @@
   },
   {
    "default": "Not Billed",
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "billing_status",
    "fieldtype": "Select",
    "label": "Billing Status",
@@ -184,6 +192,7 @@
    "fieldname": "required_by",
    "fieldtype": "Date",
    "label": "Required By",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)",
    "reqd": 1
   },
   {
@@ -197,17 +206,22 @@
    "fieldname": "purpose",
    "fieldtype": "Small Text",
    "label": "purpose",
+   "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)",
    "reqd": 1
   },
   {
+   "description": "HOD Approval",
    "fieldname": "hod_approver",
    "fieldtype": "Data",
-   "label": "Approved By"
+   "label": "Approved By",
+   "read_only": 1
   },
   {
+   "description": "Management Approval",
    "fieldname": "manager_approver",
    "fieldtype": "Data",
-   "label": "Approved By"
+   "label": "Approved By",
+   "read_only": 1
   },
   {
    "fieldname": "accepted_by",
@@ -233,7 +247,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-23 16:21:26.371575",
+ "modified": "2023-01-24 13:34:22.011486",
  "modified_by": "Administrator",
  "module": "Precihole",
  "name": "Indent",

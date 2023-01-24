@@ -46,14 +46,12 @@
    "label": "Qty"
   },
   {
-   "allow_on_submit": 1,
    "bold": 1,
    "columns": 1,
    "fieldname": "rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Rate (INR)",
-   "read_only_depends_on": "eval:doc.workflow_state == 'Updation Pending'"
+   "label": "Rate (INR)"
   },
   {
    "allow_on_submit": 1,
@@ -69,7 +67,7 @@
    "fieldname": "is_service_item",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "is_service_item",
+   "label": "Is Service Item",
    "options": "\nYes\nNo",
    "reqd": 1
   },
@@ -80,14 +78,14 @@
    "fieldname": "is_received",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "is_received",
+   "label": "Is Received",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-12-22 14:01:57.686056",
+ "modified": "2023-01-24 13:36:22.258116",
  "modified_by": "Administrator",
  "module": "Precihole",
  "name": "Indent Item",

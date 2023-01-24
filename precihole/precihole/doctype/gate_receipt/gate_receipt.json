@@ -32,31 +32,40 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "naming_series"
+   "in_list_view": 1,
+   "label": "naming_series",
+   "reqd": 1
   },
   {
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
   },
   {
    "default": "Now",
    "fieldname": "posting_time",
    "fieldtype": "Time",
-   "label": "Posting Time"
+   "in_list_view": 1,
+   "label": "Posting Time",
+   "reqd": 1
   },
   {
    "fieldname": "type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Type",
-   "options": "\nIN\nOUT"
+   "options": "\nIN\nOUT",
+   "reqd": 1
   },
   {
    "fieldname": "supplier",
    "fieldtype": "Link",
    "label": "Supplier",
-   "options": "Supplier"
+   "options": "Supplier",
+   "reqd": 1
   },
   {
    "fieldname": "doc_type",
@@ -155,7 +164,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-23 16:00:53.450521",
+ "modified": "2023-01-24 12:17:13.478834",
  "modified_by": "Administrator",
  "module": "Precihole",
  "name": "Gate Receipt",

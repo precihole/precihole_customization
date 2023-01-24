@@ -110,12 +110,14 @@ doc_events = {
 	# 	"on_cancel": "method",
 	# 	"on_trash": "method"
 	# }
+	#indent whole purchase cycle
     "Purchase Order": {
 		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
         "on_cancel": "precihole.public.py.purchase_order.update_indent_progress_after_cancel"
 	},
 	"Expense Claim": {
-		"before_insert": "precihole.public.py.expense_claim.add_adv"
+		"on_submit": "precihole.public.py.expense_claim.update_status_after_submit",
+		"on_cancel": "precihole.public.py.expense_claim.update_status_after_cancel"
 	},
     "Purchase Receipt": {
 		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
@@ -124,6 +126,13 @@ doc_events = {
     "Purchase Invoice": {
 		"on_submit": "precihole.public.py.purchase_order.update_indent_progress_after_submit",
         "on_cancel": "precihole.public.py.purchase_order.update_indent_progress_after_cancel"
+	},
+	"User": {
+		"after_insert": "precihole.public.py.user.user_master_update"
+	},
+	"Employee Advance": {
+		"on_submit": "precihole.public.py.employee_advance.update_status_after_submit",
+		"on_cancel": "precihole.public.py.employee_advance.update_status_after_cancel",
 	}
 }
 
@@ -203,8 +212,11 @@ doc_events = {
 #	"precihole.auth.validate"
 # ]
 fixtures = [
-    # export only those records that match the filters from the Workflow table
+	#exporting workflows
     {"dt": "Workflow", "filters": [["name", "in", ["Item Code Request","Erpnext Issue","Indent"]]]},
+	#exporting Custom Field for Precihole App
 	{"dt": "Custom Field", "filters": [["module", "=", "Precihole"]]},
+	{"dt": "Property Setter", "filters": [["module", "=", "Precihole"]]},
+	#exporting all workflow state
 	"Workflow State"
 ]
