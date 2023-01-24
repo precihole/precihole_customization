@@ -204,14 +204,7 @@ doc_events = {
 # ]
 fixtures = [
     # export only those records that match the filters from the Workflow table
-    {"dt": "Workflow", "filters": [["name", "=", "Item Code Request"]]},
-	{"dt": "Workflow", "filters": [["name", "=", "Erpnext Issue"]]},
-	{"dt": "Workflow", "filters": [["name", "=", "Indent"]]},
-	{"dt": "Custom Field", "filters": [["dt", "=", "Erpnext Issue"]]},
-	{"dt": "Custom Field", "filters": [["dt", "=", "Purchase Order"]]},
-	{"dt": "Custom Field", "filters": [["dt", "=", "Purchase Receipt"]]},
-	{"dt": "Custom Field", "filters": [["dt", "=", "Purchase Invoice"]]},
+    {"dt": "Workflow", "filters": [["name", "in", ["Item Code Request","Erpnext Issue","Indent"]]]},
+	{"dt": "Custom Field", "filters": [["module", "=", "Precihole"]]},
 	"Workflow State"
-
-
 ]
