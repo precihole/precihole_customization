@@ -218,5 +218,6 @@ fixtures = [
 	{"dt": "Custom Field", "filters": [["module", "=", "Precihole"]]},
 	{"dt": "Property Setter", "filters": [["module", "=", "Precihole"]]},
 	#exporting all workflow state
-	"Workflow State"
+	"Workflow State",
+	"Workflow Action Master"
 ]

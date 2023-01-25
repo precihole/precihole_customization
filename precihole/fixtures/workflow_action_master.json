@@ -1,0 +1,128 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-22 14:39:20.383277",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-22 14:39:20.386901",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-22 14:39:20.392559",
+  "name": "Review",
+  "workflow_action_name": "Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:08.549678",
+  "name": "Submit",
+  "workflow_action_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:24.161316",
+  "name": "Rate Approve",
+  "workflow_action_name": "Rate Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:40.953759",
+  "name": "Create PO",
+  "workflow_action_name": "Create PO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:49.154904",
+  "name": "Close",
+  "workflow_action_name": "Close"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:57.390183",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:29:06.412796",
+  "name": "Partially Received",
+  "workflow_action_name": "Partially Received"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:29:17.110023",
+  "name": "To Bill",
+  "workflow_action_name": "To Bill"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:29:26.174411",
+  "name": "Paid",
+  "workflow_action_name": "Paid"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:30:40.581584",
+  "name": "Accept",
+  "workflow_action_name": "Accept"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:30:47.765773",
+  "name": "Reassign",
+  "workflow_action_name": "Reassign"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 12:56:04.441662",
+  "name": "Account Review",
+  "workflow_action_name": "Account Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 12:58:15.337903",
+  "name": "Clarify",
+  "workflow_action_name": "Clarify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 16:45:22.893102",
+  "name": "Issue Resolved",
+  "workflow_action_name": "Issue Resolved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 16:49:51.809681",
+  "name": "Work in Process",
+  "workflow_action_name": "Work in Process"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 16:50:17.036305",
+  "name": "Issue Raise To Erpnext",
+  "workflow_action_name": "Issue Raise To Erpnext"
+ }
+]

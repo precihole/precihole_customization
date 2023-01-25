@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-25 12:03:45.068214",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "default_admin_employee",
+  "column_break_2",
+  "default_purchase_employee"
+ ],
+ "fields": [
+  {
+   "description": "Please keep in mind that all employee advances and expense claims will be issued to this employee for admin purposes.",
+   "fieldname": "default_admin_employee",
+   "fieldtype": "Link",
+   "label": "Default Admin Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Please keep in mind that all employee advances and expense claims will be issued to this employee for purchase purposes.",
+   "fieldname": "default_purchase_employee",
+   "fieldtype": "Link",
+   "label": "Default Purchase Employee",
+   "options": "Employee"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-01-25 12:03:45.068214",
+ "modified_by": "Administrator",
+ "module": "Precihole",
+ "name": "Precihole Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -62,7 +62,24 @@ frappe.ui.form.on('Indent', {
         }
 
         //ea button only for admin and purchase
-        if(frm.doc.workflow_state == 'Approved' && (frm.doc.admin == 1 || frm.doc.purchase == 1)){
+        if(frm.doc.workflow_state == 'Approved' && (frm.doc.admin == 1 || frm.doc.purchase == 1 || frm.doc.travel == 1)){
+            cur_frm.add_custom_button(__("Employee Advance"), function() {
+                var indent = frm.doc.name 
+                frappe.run_serially([ 
+                    () => frappe.new_doc('Employee Advance'), 
+                    () => { 
+                        cur_frm.set_value('employee',frm.doc.employee)
+                        cur_frm.set_value('purpose',frm.doc.purpose)
+                        cur_frm.set_value('advance_amount',frm.doc.total_amount)
+                        cur_frm.set_value('indent_c',frm.doc.name)
+                    }
+                ], 
+                    //() => next action you want to perform
+                );
+            }, __("Create"));
+
+        }
+        if(frm.doc.workflow_state == 'To Receive and Bill' && frm.doc.travel == 1){
             cur_frm.add_custom_button(__("Employee Advance"), function() {
                 var indent = frm.doc.name 
                 frappe.run_serially([ 
@@ -110,6 +127,23 @@ frappe.ui.form.on('Indent', {
             }, __("Create"));
 
         }
+        if(frm.doc.workflow_state == 'To Bill' && frm.doc.travel == 1){
+            cur_frm.add_custom_button(__("Expense Claim"), function() {
+                var indent = frm.doc.name 
+                frappe.run_serially([ 
+                    () => frappe.new_doc('Expense Claim'),
+                    () => { 
+                        cur_frm.add_child("indent", { 
+                            indent_name : indent
+                        })
+                        cur_frm.refresh()
+
+                    }
+                ],
+                    //() => next action you want to perform
+                );
+            }, __("Create"));
+        }
     }
 });
 frappe.ui.form.on('Indent', {
@@ -140,7 +174,7 @@ frappe.ui.form.on('Indent', {
         //     var df = frappe.meta.get_docfield("Indent Item","rate", cur_frm.doc.name);
         //     df.allow_on_submit = 0;
         // }
-        if(frm.doc.workflow_state == 'Approved'){
+        if(frm.doc.workflow_state == 'Approved' || frm.doc.workflow_state == 'To Receive and Bill'){
             var df = frappe.meta.get_docfield("Indent Item","is_received", cur_frm.doc.name);
             df.read_only = 0;
         }

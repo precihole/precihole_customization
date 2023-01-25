@@ -128,172 +128,99 @@ def update_indent_progress_after_submit(doc, method):
 def update_indent_progress_after_cancel(doc, method):
     if doc.indent:
         for ind in doc.indent:
-            if ind.is_partial == 'Yes':
-                if doc.doctype == 'Purchase Order':
-                    purchase_order = frappe.db.get_all('Indent Details',{
-                            'indent_name': ind.indent_name,
-                            'docstatus': 1,
-                            'parenttype': "Purchase Order"
-                        },
-                        ['parent']
-                    )
-                    to_receive_count= 0
-                    to_bill_count = 0
-                    paid_count = 0
-                    for po in purchase_order:
-                        status = frappe.db.get_value('Purchase Order',po.parent,'status')
-
-                        #chk status function
-                        #chk status function
-                        if status == 'To Receive and Bill':
-                            to_receive_count = to_receive_count + 1
-                        elif status == 'To Bill':
-                            to_bill_count = to_bill_count + 1
-                        elif status == 'Paid':
-                            paid_count = paid_count + 1
-                        
-                    if to_receive_count > 0 or to_bill_count > 0 or paid_count > 0:
-
-                        #changes in indent order status to partial
-                        frappe.db.set_value('Indent',ind.indent_name,'order_status','Partially Ordered')
-
-                        #changes in indent workflow_state status
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Receive and Bill')
-                    elif to_receive_count == 0 or to_bill_count == 0 or paid_count == 0:
-                        #changes in indent order status to fully
-                        frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
-
-                    #frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
-                    #frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
-
-                elif doc.doctype == 'Purchase Receipt':
-                    purchase_order = frappe.db.get_all('Indent Details',{
-                            'indent_name': ind.indent_name,
-                            'docstatus': 1
-                        },
-                        ['parent']
-                    )
-                    to_receive_count= 0
-                    to_bill_count = 0
-                    paid_count = 0
-                    for po in purchase_order:
-                        status = frappe.db.get_value('Purchase Order',po.parent,'status')
-                        
-                        #chk status function
-                        if status == 'To Receive and Bill':
-                            to_receive_count = to_receive_count + 1
-                        elif status == 'To Bill':
-                            to_bill_count = to_bill_count + 1
-                        elif status == 'Paid':
-                            paid_count = paid_count + 1
+            if doc.doctype == 'Purchase Order':
+                purchase_order = frappe.db.get_all('Indent Details',{
+                        'indent_name': ind.indent_name,
+                        'docstatus': 1,
+                        'parenttype': "Purchase Order"
+                    },
+                    ['parent']
+                )
+                to_receive_count= 0
+                to_bill_count = 0
+                paid_count = 0
+                for po in purchase_order:
+                    status = frappe.db.get_value('Purchase Order',po.parent,'status')
+                    #chk status function
+                    #chk status function
+                    if status == 'To Receive and Bill':
+                        to_receive_count = to_receive_count + 1
+                    elif status == 'To Bill':
+                        to_bill_count = to_bill_count + 1
+                    elif status == 'Paid':
+                        paid_count = paid_count + 1
                     
-                    if to_receive_count >= 1 and (to_bill_count > 0 or paid_count > 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Partially Received')
-                    elif to_receive_count >= 1 and (to_bill_count == 0 or paid_count == 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Not Received')
-
-
-                elif doc.doctype == 'Purchase Invoice':
-                    frappe.db.set_value('Indent',ind.indent_name,'billing_status','Not Billed')
+                if to_receive_count > 0 or to_bill_count > 0 or paid_count > 0:
+                    #changes in indent order status to partial
+                    frappe.db.set_value('Indent',ind.indent_name,'order_status','Partially Ordered')
+                    #changes in indent workflow_state status
                     frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Receive and Bill')
+                elif to_receive_count == 0 or to_bill_count == 0 or paid_count == 0:
+                    #changes in indent order status to fully
+                    frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
+                    frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
+                #frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
+                #frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
 
-            elif ind.is_partial == 'No':
-                if doc.doctype == 'Purchase Order':
-                    purchase_order = frappe.db.get_all('Indent Details',{
-                            'indent_name': ind.indent_name,
-                            'docstatus': 1,
-                            'parenttype': "Purchase Order"
-                        },
-                        ['parent']
-                    )
-                    to_receive_count= 0
-                    to_bill_count = 0
-                    paid_count = 0
-                    for po in purchase_order:
-                        status = frappe.db.get_value('Purchase Order',po.parent,'status')
-
-                        #chk status function
-                        #chk status function
-                        if status == 'To Receive and Bill':
-                            to_receive_count = to_receive_count + 1
-                        elif status == 'To Bill':
-                            to_bill_count = to_bill_count + 1
-                        elif status == 'Paid':
-                            paid_count = paid_count + 1
-                        
-                    if to_receive_count > 0 or to_bill_count > 0 or paid_count > 0:
-
-                        #changes in indent order status to partial
-                        frappe.db.set_value('Indent',ind.indent_name,'order_status','Partially Ordered')
-
-                        #changes in indent workflow_state status
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Receive and Bill')
-                    elif to_receive_count == 0 or to_bill_count == 0 or paid_count == 0:
-                        #changes in indent order status to fully
-                        frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
-
-                    #frappe.db.set_value('Indent',ind.indent_name,'order_status','Not Ordered')
-                    #frappe.db.set_value('Indent',ind.indent_name,'workflow_state','Approved')
-
-                elif doc.doctype == 'Purchase Receipt':
-                    purchase_order = frappe.db.get_all('Indent Details',{
-                            'indent_name': ind.indent_name,
-                            'docstatus': 1
-                        },
-                        ['parent']
-                    )
-                    to_receive_count= 0
-                    to_bill_count = 0
-                    paid_count = 0
-                    for po in purchase_order:
-                        status = frappe.db.get_value('Purchase Order',po.parent,'status')
-                        
-                        #chk status function
-                        if status == 'To Receive and Bill':
-                            to_receive_count = to_receive_count + 1
-                        elif status == 'To Bill':
-                            to_bill_count = to_bill_count + 1
-                        elif status == 'Paid':
-                            paid_count = paid_count + 1
+            elif doc.doctype == 'Purchase Receipt':
+                purchase_order = frappe.db.get_all('Indent Details',{
+                        'indent_name': ind.indent_name,
+                        'docstatus': 1,
+                        'parenttype': "Purchase Order"
+                    },
+                    ['parent']
+                )
+                to_receive_count= 0
+                to_bill_count = 0
+                paid_count = 0
+                for po in purchase_order:
+                    status = frappe.db.get_value('Purchase Order',po.parent,'status')
                     
-                    if to_receive_count >= 1 and (to_bill_count > 0 or paid_count > 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Partially Received')
-                    elif to_receive_count >= 1 and (to_bill_count == 0 or paid_count == 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Not Received')
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Receive and Bill')
+                    #chk status function
+                    if status == 'To Receive and Bill':
+                        to_receive_count = to_receive_count + 1
+                    elif status == 'To Bill':
+                        to_bill_count = to_bill_count + 1
+                    elif status == 'Paid':
+                        paid_count = paid_count + 1
+                
+                if to_receive_count >= 1 and (to_bill_count > 0 or paid_count > 0):
+                    frappe.db.set_value('Indent',ind.indent_name,'receive_status','Partially Received')
+                elif to_receive_count >= 1 and (to_bill_count == 0 or paid_count == 0):
+                    frappe.db.set_value('Indent',ind.indent_name,'receive_status','Not Received')
 
-
-                elif doc.doctype == 'Purchase Invoice':
-                    purchase_order = frappe.db.get_all('Indent Details',{
-                            'indent_name': ind.indent_name,
-                            'docstatus': 1,
-                            'parenttype': "Purchase Order"
-                        },
-                        ['parent']
-                    )
-                    to_receive_count= 0
-                    to_bill_count = 0
-                    paid_count = 0
-                    for po in purchase_order:
-                        status = frappe.db.get_value('Purchase Order',po.parent,'status')
-                        
-                        #chk status function
-                        if status == 'To Receive and Bill':
-                            to_receive_count = to_receive_count + 1
-                        elif status == 'To Bill':
-                            to_bill_count = to_bill_count + 1
-                        elif status == 'Paid':
-                            paid_count = paid_count + 1
+            elif doc.doctype == 'Purchase Invoice':
+                purchase_order = frappe.db.get_all('Indent Details',{
+                        'indent_name': ind.indent_name,
+                        'docstatus': 1,
+                        'parenttype': "Purchase Order"
+                    },
+                    ['parent']
+                )
+                to_receive_count= 0
+                to_bill_count = 0
+                paid_count = 0
+                completed = 0
+                for po in purchase_order:
+                    status = frappe.db.get_value('Purchase Order',po.parent,'status')
                     
-                    if to_bill_count >= 1 and (to_receive_count > 0 or paid_count > 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Partially Billed')
-                    elif to_bill_count >= 1 and (to_receive_count == 0 or paid_count == 0):
-                        frappe.db.set_value('Indent',ind.indent_name,'receive_status','Not Billed')
-                        frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Bill')
-                    #frappe.db.set_value('Indent',ind.indent_name,'billing_status','Not Billed')
-                    #frappe.db.set_value('Indent',ind.indent_name,'billing_status','To Bill')
+                    #chk status function
+                    if status == 'To Receive and Bill':
+                        to_receive_count = to_receive_count + 1
+                    elif status == 'To Bill':
+                        to_bill_count = to_bill_count + 1
+                    elif status == 'Paid':
+                        paid_count = paid_count + 1
+                    elif status == 'Completed':
+                        completed = completed + 1
+                
+                if to_bill_count >= 1 and (to_receive_count > 0 or paid_count > 0 or completed > 0):
+                    frappe.db.set_value('Indent',ind.indent_name,'billing_status','Partially Billed')
+                elif to_bill_count >= 1 and (to_receive_count == 0 or paid_count == 0 or completed == 0):
+                    frappe.db.set_value('Indent',ind.indent_name,'billing_status','Not Billed')
+                    frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Bill')
+                #frappe.db.set_value('Indent',ind.indent_name,'billing_status','Not Billed')
+                #frappe.db.set_value('Indent',ind.indent_name,'billing_status','To Bill')
 @frappe.whitelist()
 def get_site_url():
     data = frappe.utils.get_url()
