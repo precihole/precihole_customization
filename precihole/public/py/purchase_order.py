@@ -188,6 +188,7 @@ def update_indent_progress_after_cancel(doc, method):
                     frappe.db.set_value('Indent',ind.indent_name,'receive_status','Partially Received')
                 elif to_receive_count >= 1 and (to_bill_count == 0 or paid_count == 0):
                     frappe.db.set_value('Indent',ind.indent_name,'receive_status','Not Received')
+                    frappe.db.set_value('Indent',ind.indent_name,'workflow_state','To Receive and Bill')
 
             elif doc.doctype == 'Purchase Invoice':
                 purchase_order = frappe.db.get_all('Indent Details',{

@@ -68,7 +68,47 @@ frappe.ui.form.on('Indent', {
                 frappe.run_serially([ 
                     () => frappe.new_doc('Employee Advance'), 
                     () => { 
-                        cur_frm.set_value('employee',frm.doc.employee)
+                        if(frm.doc.admin == 1){
+                            frappe.call({
+                                async: false,
+                                method: "frappe.client.get_value",
+                                args: {
+                                    "doctype": "Precihole Settings",
+                                    "filters": {
+                                        'name': 'Precihole Settings' // where Clause 
+                                    },
+                                    "fieldname": ['default_admin_employee'] // fieldname to be fetched
+                                },
+                                callback: function (res) {
+                                    if (res.message != undefined) {
+                                        var value = res.message;
+                                        //console.log(value.default_admin_employee)
+                                        cur_frm.set_value('employee',value.default_admin_employee)
+                                    }
+                                }
+                            });
+                        }
+                        else if(frm.doc.purchase == 1){
+                            frappe.call({
+                                async: false,
+                                method: "frappe.client.get_value",
+                                args: {
+                                    "doctype": "Precihole Settings",
+                                    "filters": {
+                                        'name': 'Precihole Settings' // where Clause 
+                                    },
+                                    "fieldname": ['default_purchase_employee'] // fieldname to be fetched
+                                },
+                                callback: function (res) {
+                                    if (res.message != undefined) {
+                                        var value = res.message;
+                                        //console.log(value.default_admin_employee)
+                                        cur_frm.set_value('employee',value.default_purchase_employee)
+                                    }
+                                }
+                            });
+                        }
+                        //cur_frm.set_value('employee',frm.doc.employee)
                         cur_frm.set_value('purpose',frm.doc.purpose)
                         cur_frm.set_value('advance_amount',frm.doc.total_amount)
                         cur_frm.set_value('indent_c',frm.doc.name)
@@ -84,12 +124,15 @@ frappe.ui.form.on('Indent', {
                 var indent = frm.doc.name 
                 frappe.run_serially([ 
                     () => frappe.new_doc('Employee Advance'), 
-                    () => { 
-                        cur_frm.set_value('employee',frm.doc.employee)
-                        cur_frm.set_value('purpose',frm.doc.purpose)
-                        cur_frm.set_value('advance_amount',frm.doc.total_amount)
-                        cur_frm.set_value('indent_c',frm.doc.name)
+                    () => {
+                    //if (frm.doc.travel == 1){
+
                     }
+                        // cur_frm.set_value('employee',frm.doc.employee)
+                        // cur_frm.set_value('purpose',frm.doc.purpose)
+                        // cur_frm.set_value('advance_amount',frm.doc.total_amount)
+                        // cur_frm.set_value('indent_c',frm.doc.name)
+                    //}
                 ], 
                     //() => next action you want to perform
                 );
@@ -101,7 +144,47 @@ frappe.ui.form.on('Indent', {
                 var indent = frm.doc.name 
                 frappe.run_serially([ 
                     () => frappe.new_doc('Expense Claim'),
-                    () => { 
+                    () => {
+                        if(frm.doc.admin == 1){
+                            frappe.call({
+                                async: false,
+                                method: "frappe.client.get_value",
+                                args: {
+                                    "doctype": "Precihole Settings",
+                                    "filters": {
+                                        'name': 'Precihole Settings' // where Clause 
+                                    },
+                                    "fieldname": ['default_admin_employee'] // fieldname to be fetched
+                                },
+                                callback: function (res) {
+                                    if (res.message != undefined) {
+                                        var value = res.message;
+                                        //console.log(value.default_admin_employee)
+                                        cur_frm.set_value('employee',value.default_admin_employee)
+                                    }
+                                }
+                            });
+                        }
+                        else if(frm.doc.purchase == 1){
+                            frappe.call({
+                                async: false,
+                                method: "frappe.client.get_value",
+                                args: {
+                                    "doctype": "Precihole Settings",
+                                    "filters": {
+                                        'name': 'Precihole Settings' // where Clause 
+                                    },
+                                    "fieldname": ['default_purchase_employee'] // fieldname to be fetched
+                                },
+                                callback: function (res) {
+                                    if (res.message != undefined) {
+                                        var value = res.message;
+                                        //console.log(value.default_admin_employee)
+                                        cur_frm.set_value('employee',value.default_purchase_employee)
+                                    }
+                                }
+                            });
+                        }
                         cur_frm.add_child("indent", { 
                             indent_name : indent
                         })
