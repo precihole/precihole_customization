@@ -33,12 +33,13 @@
   "order_status",
   "receive_status",
   "billing_status",
-  "cancel_reason",
+  "column_break_ab6j9",
   "hod_approver",
   "manager_approver",
   "accepted_by",
   "rejected_by",
-  "last_status"
+  "last_status",
+  "cancel_reason"
  ],
  "fields": [
   {
@@ -140,25 +141,26 @@
   {
    "fieldname": "employee",
    "fieldtype": "Link",
-   "label": "employee",
+   "label": "Employee",
    "options": "Employee",
    "read_only": 1
   },
   {
    "fieldname": "employee_name",
    "fieldtype": "Data",
-   "label": "employee name",
+   "label": "Employee Name",
    "read_only": 1
   },
   {
    "fieldname": "expense_approver",
    "fieldtype": "Data",
-   "label": "expense approver",
+   "label": "Expense Approver",
    "read_only": 1
   },
   {
    "default": "Not Ordered",
    "depends_on": "eval:!doc.__islocal",
+   "description": "Only if Purchase Order has been created",
    "fieldname": "order_status",
    "fieldtype": "Select",
    "label": "Order Status",
@@ -168,6 +170,7 @@
   {
    "default": "Not Received",
    "depends_on": "eval:!doc.__islocal",
+   "description": "Status change based on Purchase Receipt & Is Received Tick",
    "fieldname": "receive_status",
    "fieldtype": "Select",
    "label": "Receive Status",
@@ -177,6 +180,7 @@
   {
    "default": "Not Billed",
    "depends_on": "eval:!doc.__islocal",
+   "description": "Status change based on Purchase Invoice & Expense Claim",
    "fieldname": "billing_status",
    "fieldtype": "Select",
    "label": "Billing Status",
@@ -205,7 +209,7 @@
   {
    "fieldname": "purpose",
    "fieldtype": "Small Text",
-   "label": "purpose",
+   "label": "Purpose",
    "read_only_depends_on": "eval:in_list(['Management Approval Pending','Accept / Reassign'],doc.workflow_state)",
    "reqd": 1
   },
@@ -224,6 +228,7 @@
    "read_only": 1
   },
   {
+   "description": "Indent Accepter",
    "fieldname": "accepted_by",
    "fieldtype": "Data",
    "label": "Accepted By",
@@ -242,12 +247,42 @@
    "hidden": 1,
    "label": "last status",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ab6j9",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2023-01-24 13:34:22.011486",
+ "links": [
+  {
+   "group": "Purchase",
+   "link_doctype": "Purchase Order",
+   "link_fieldname": "indent_name"
+  },
+  {
+   "group": "Purchase",
+   "link_doctype": "Purchase Receipt",
+   "link_fieldname": "indent_name"
+  },
+  {
+   "group": "Purchase",
+   "link_doctype": "Purchase Invoice",
+   "link_fieldname": "indent_name"
+  },
+  {
+   "group": "Expense",
+   "link_doctype": "Employee Advance",
+   "link_fieldname": "Indent_c"
+  },
+  {
+   "group": "Expense",
+   "link_doctype": "Expense Claim",
+   "link_fieldname": "indent_name"
+  }
+ ],
+ "modified": "2023-03-02 11:43:01.043377",
  "modified_by": "Administrator",
  "module": "Precihole",
  "name": "Indent",
@@ -269,5 +304,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
