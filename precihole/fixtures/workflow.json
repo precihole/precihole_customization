@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Indent",
   "is_active": 1,
-  "modified": "2023-01-23 17:01:41.322288",
+  "modified": "2023-03-01 16:30:06.160542",
   "name": "Indent",
   "override_status": 0,
   "send_email_alert": 0,
@@ -21,6 +21,19 @@
     "state": "Open",
     "update_field": "workflow_state",
     "update_value": "Open"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Indent",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rate Updation Pending",
+    "update_field": "workflow_state",
+    "update_value": "Rate Updation Pending"
    },
    {
     "allow_edit": "All",
@@ -128,19 +141,6 @@
    },
    {
     "allow_edit": "All",
-    "doc_status": "2",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Indent",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Cancelled",
-    "update_field": "workflow_state",
-    "update_value": "Cancelled"
-   },
-   {
-    "allow_edit": "All",
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -180,19 +180,6 @@
    },
    {
     "allow_edit": "All",
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Indent",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Rate Updation Pending",
-    "update_field": "workflow_state",
-    "update_value": "Rate Updation Pending"
-   },
-   {
-    "allow_edit": "All",
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -203,6 +190,19 @@
     "state": "Closed",
     "update_field": "workflow_state",
     "update_value": "Closed"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "2",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Indent",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": "workflow_state",
+    "update_value": "Cancelled"
    }
   ],
   "transitions": [
@@ -210,12 +210,34 @@
     "action": "Submit",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "frappe.session.user == doc.owner",
+    "condition": "frappe.session.user == doc.owner and (doc.purchase == 1 or doc.admin == 1)",
+    "next_state": "Rate Updation Pending",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Open"
+   },
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "frappe.session.user == doc.owner and doc.travel == 1",
     "next_state": "HOD Approval Pending",
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Open"
+   },
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "1 == frappe.db.get_value('User Approvers',{'name': frappe.session.user},'purchase_approver') or 1 == frappe.db.get_value('User Approvers',{'name': frappe.session.user},'admin_approver')",
+    "next_state": "HOD Approval Pending",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Rate Updation Pending"
    },
    {
     "action": "Approve",
@@ -243,7 +265,7 @@
     "action": "Approve",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "doc.total_amount > 2000 and (doc.purchase == 1 or doc.admin == 1) and doc.expense_approver == frappe.session.user",
+    "condition": "doc.total_amount >= 2000 and (doc.purchase == 1 or doc.admin == 1) and doc.expense_approver == frappe.session.user",
     "next_state": "Management Approval Pending",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -254,7 +276,7 @@
     "action": "Reject",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "doc.total_amount > 2000 and (doc.purchase == 1 or doc.admin == 1) and doc.expense_approver == frappe.session.user",
+    "condition": "doc.total_amount >= 2000 and (doc.purchase == 1 or doc.admin == 1) and doc.expense_approver == frappe.session.user",
     "next_state": "Rejected",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -320,7 +342,7 @@
     "action": "Approve",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "doc.travel == 1",
+    "condition": "doc.travel == 1 and doc.total_amount < 2000 and doc.expense_approver == frappe.session.user",
     "next_state": "To Receive and Bill",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -331,12 +353,56 @@
     "action": "Reject",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "doc.travel == 1",
+    "condition": "doc.travel == 1 and doc.total_amount < 2000 and doc.expense_approver == frappe.session.user",
     "next_state": "Rejected",
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.travel == 1 and doc.total_amount >= 2000 and doc.expense_approver == frappe.session.user",
+    "next_state": "Management Approval Pending",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.travel == 1 and doc.total_amount >= 2000 and doc.expense_approver == frappe.session.user",
+    "next_state": "Rejected",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.travel == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'management_approver')",
+    "next_state": "To Receive and Bill",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Management Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.travel == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'management_approver')",
+    "next_state": "Rejected",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Management Approval Pending"
    },
    {
     "action": "Create PO",
@@ -853,6 +919,175 @@
    }
   ],
   "workflow_name": "Erpnext Issue",
+  "workflow_state_field": "workflow_state"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Expense Claim",
+  "is_active": 1,
+  "modified": "2023-03-02 12:11:14.535611",
+  "name": "Expense Claim",
+  "override_status": 0,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Expense Claim",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending",
+    "update_field": "workflow_state",
+    "update_value": "HOD Approval Pending"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Expense Claim",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Management Approval Pending",
+    "update_field": "approval_status",
+    "update_value": "Approved"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Expense Claim",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Expense Executive Pending",
+    "update_field": "approval_status",
+    "update_value": "Approved"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Expense Claim",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Completed",
+    "update_field": "workflow_state",
+    "update_value": "Completed"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Expense Claim",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "workflow_state",
+    "update_value": "Rejected"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.expense_approver == frappe.session.user and doc.total_sanctioned_amount < 2000 and doc.approval_status == 'Draft'",
+    "next_state": "Expense Executive Pending",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.expense_approver == frappe.session.user and doc.total_sanctioned_amount < 2000 and doc.approval_status == 'Draft'",
+    "next_state": "Rejected",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.expense_approver == frappe.session.user and doc.total_sanctioned_amount >= 2000 and doc.approval_status == 'Draft'",
+    "next_state": "Management Approval Pending",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "doc.expense_approver == frappe.session.user and doc.total_sanctioned_amount >= 2000 and doc.approval_status == 'Draft'",
+    "next_state": "Rejected",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "HOD Approval Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'management_approver') and doc.approval_status == 'Approved'",
+    "next_state": "Expense Executive Pending",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Management Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'management_approver') and doc.approval_status == 'Approved'",
+    "next_state": "Rejected",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Management Approval Pending"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": null,
+    "next_state": "Completed",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Expense Executive Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Expense Claim",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Expense Executive Pending"
+   }
+  ],
+  "workflow_name": "Expense Claim",
   "workflow_state_field": "workflow_state"
  }
 ]

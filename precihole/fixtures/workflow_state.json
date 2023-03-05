@@ -214,5 +214,14 @@
   "name": "Closed",
   "style": "",
   "workflow_state_name": "Closed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-03-01 17:27:07.663633",
+  "name": "Expense Executive Pending",
+  "style": "",
+  "workflow_state_name": "Expense Executive Pending"
  }
 ]

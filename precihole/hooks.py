@@ -213,7 +213,7 @@ doc_events = {
 # ]
 fixtures = [
 	#exporting workflows
-    {"dt": "Workflow", "filters": [["name", "in", ["Item Code Request","Erpnext Issue","Indent"]]]},
+    {"dt": "Workflow", "filters": [["name", "in", ["Expense Claim","Item Code Request","Erpnext Issue","Indent"]]]},
 	#exporting Custom Field for Precihole App
 	{"dt": "Custom Field", "filters": [["module", "=", "Precihole"]]},
 	{"dt": "Property Setter", "filters": [["module", "=", "Precihole"]]},
