@@ -13,6 +13,10 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/precihole/css/precihole.css"
 # app_include_js = "/assets/precihole/js/precihole.js"
+doctype_js = {
+    "Purchase Order" : "public/js/purchase_order.js",
+    "Purchase Invoice" : "public/js/purchase_invoice.js"
+}
 
 # include js, css files in header of web template
 # web_include_css = "/assets/precihole/css/precihole.css"
@@ -133,6 +137,10 @@ doc_events = {
     "Expense Claim": {
 		"on_submit": "precihole.public.py.expense_claim.update_status_after_submit",
 		"on_cancel": "precihole.public.py.expense_claim.update_status_after_cancel"
+	},
+    "Payment Entry": {
+		"on_submit": "pl_accounts.public.py.payment_entry.set_submit_status",
+        "on_cancel": "pl_accounts.public.py.payment_entry.set_cancel_status"
 	},
 }
 
