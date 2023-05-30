@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Indent",
   "is_active": 1,
-  "modified": "2023-03-01 16:30:06.160542",
+  "modified": "2023-05-30 11:19:31.834255",
   "name": "Indent",
   "override_status": 0,
   "send_email_alert": 0,
@@ -309,7 +309,7 @@
     "action": "Accept",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "(doc.purchase == 1 or doc.admin == 1) and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')",
+    "condition": "(doc.purchase == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')) or (doc.admin == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'admin_approver'))",
     "next_state": "Approved",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -320,7 +320,7 @@
     "action": "Reassign",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "(doc.purchase == 1 or doc.admin == 1) and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')",
+    "condition": "(doc.purchase == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')) or (doc.admin == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'admin_approver'))",
     "next_state": "Accept / Reassign",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -331,7 +331,7 @@
     "action": "Reject",
     "allow_self_approval": 1,
     "allowed": "All",
-    "condition": "(doc.purchase == 1 or doc.admin == 1) and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')",
+    "condition": "(doc.purchase == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'purchase_approver')) or (doc.admin == 1 and 1 == frappe.db.get_value('User Approvers',{'name':frappe.session.user},'admin_approver'))",
     "next_state": "Rejected",
     "parent": "Indent",
     "parentfield": "transitions",
@@ -416,11 +416,44 @@
     "state": "Approved"
    },
    {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "frappe.session.user == doc.owner",
+    "next_state": "Cancelled",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
+   },
+   {
     "action": "To Bill",
     "allow_self_approval": 1,
     "allowed": "System Manager",
     "condition": null,
     "next_state": "To Bill",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "To Receive and Bill"
+   },
+   {
+    "action": "Close",
+    "allow_self_approval": 1,
+    "allowed": "System Manager",
+    "condition": null,
+    "next_state": "Closed",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "To Receive and Bill"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "frappe.session.user == doc.owner",
+    "next_state": "Cancelled",
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -438,18 +471,7 @@
     "state": "To Bill"
    },
    {
-    "action": "To Bill",
-    "allow_self_approval": 1,
-    "allowed": "System Manager",
-    "condition": null,
-    "next_state": "Closed",
-    "parent": "Indent",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "To Receive and Bill"
-   },
-   {
-    "action": "Paid",
+    "action": "Close",
     "allow_self_approval": 1,
     "allowed": "System Manager",
     "condition": null,
@@ -460,7 +482,18 @@
     "state": "To Bill"
    },
    {
-    "action": "To Bill",
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": "frappe.session.user == doc.owner",
+    "next_state": "Cancelled",
+    "parent": "Indent",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "To Bill"
+   },
+   {
+    "action": "Re-open",
     "allow_self_approval": 1,
     "allowed": "System Manager",
     "condition": null,
@@ -471,7 +504,7 @@
     "state": "Closed"
    },
    {
-    "action": "Paid",
+    "action": "Re-open",
     "allow_self_approval": 1,
     "allowed": "System Manager",
     "condition": null,
@@ -1088,6 +1121,131 @@
    }
   ],
   "workflow_name": "Expense Claim",
+  "workflow_state_field": "workflow_state"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Request for Payment",
+  "is_active": 1,
+  "modified": "2023-05-30 11:38:07.316177",
+  "name": "Request for Payment",
+  "override_status": 1,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request for Payment",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Draft",
+    "update_field": "",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request for Payment",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approval Pending",
+    "update_field": "",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request for Payment",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": "status",
+    "update_value": "Initiated"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request for Payment",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "status",
+    "update_value": "Rejected"
+   },
+   {
+    "allow_edit": "All",
+    "doc_status": "2",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request for Payment",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": "status",
+    "update_value": "Cancelled"
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Submit",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": null,
+    "next_state": "Approval Pending",
+    "parent": "Request for Payment",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Draft"
+   },
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "System Manager",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Request for Payment",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approval Pending"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "System Manager",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Request for Payment",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approval Pending"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": null,
+    "next_state": "Cancelled",
+    "parent": "Request for Payment",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
+   }
+  ],
+  "workflow_name": "Request for Payment",
   "workflow_state_field": "workflow_state"
  }
 ]
