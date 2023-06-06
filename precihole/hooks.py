@@ -139,8 +139,8 @@ doc_events = {
 		"on_cancel": "precihole.public.py.expense_claim.update_status_after_cancel"
 	},
     "Payment Entry": {
-		"on_submit": "pl_accounts.public.py.payment_entry.set_submit_status",
-        "on_cancel": "pl_accounts.public.py.payment_entry.set_cancel_status"
+		"on_submit": "precihole.public.py.payment_entry.set_submit_status",
+        	"on_cancel": "precihole.public.py.payment_entry.set_cancel_status"
 	},
 }
 
