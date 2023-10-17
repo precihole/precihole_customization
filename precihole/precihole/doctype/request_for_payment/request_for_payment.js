@@ -1,17 +1,73 @@
 // Copyright (c) 2023, Precihole and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Request for Payment', {
+frappe.ui.form.on('Request for Payment',  {
 	refresh(frm) {
-        frm.set_query('reference_name', function() {
-			return {
-				'filters': {
-					//filter for reference_name based on party_name
-					'supplier_name': ['=', frm.doc.party_name],
-					'docstatus': ['=', 1]
-				}
-			};
-		});
+        if (frm.doc.payment_request_type == 'Outward'){
+            frm.set_value('party_type', 'Supplier')
+        }
+        var rounded_total = 0
+        if (frm.doc.docstatus == 0){
+            cur_frm.add_custom_button(__("Indent"), function() {
+                new frappe.ui.form.MultiSelectDialog({
+                    doctype: "Indent",
+                    target: cur_frm.doc.name,
+                    setters: {
+                        posting_date: null
+                    },
+                    add_filters_group: 1,
+                    date_field: "posting_date",
+                    get_query() {
+                        return {
+                            filters: { docstatus: ['=', 1], travel: ['!=', 1], workflow_state: ['=', 'Approved']}
+                        }
+                    },
+                    action(selections) {
+                        const iterator = selections.values();
+                        cur_frm.clear_table("references");
+                        for (const value of iterator) {
+                            frappe.call({
+                                async: false,
+                                method: "frappe.client.get_value",
+                                args: {
+                                    doctype: "Indent",
+                                    fieldname: 'total_amount',
+                                    filters: {
+                                        name: value
+                                    }
+                                },
+                                callback: function(r) {
+                                    if (r.message) {
+                                        cur_frm.add_child("references", { 
+                                            reference_doctype: 'Indent',
+                                            reference_name: value,
+                                            amount: r.message.total_amount
+                                        })
+                                        rounded_total += r.message.total_amount
+                                    }
+                                }
+                            });
+                        }
+                        cur_frm.set_value('rounded_total', rounded_total)
+                        cur_frm.set_value('outstanding_amount', rounded_total)
+                        cur_frm.set_value('paid_amount', rounded_total)    
+                        cur_frm.refresh_field("references");
+                        cur_dialog.hide();
+                    }
+                });
+            }, __("Get Items From"));
+        }
+		if(frm.doc.party_name){
+            frm.set_query('reference_name', function() {
+                return {
+                    'filters': {
+                        //filter for reference_name based on party_name
+                        'supplier_name': ['=', frm.doc.party_name],
+                        'docstatus': ['=', 1]
+                    }
+                };
+            });
+		}
         frappe.db.get_list('Payment Entry', {
             fields: ['name'],
             filters: {
@@ -104,37 +160,65 @@ frappe.ui.form.on('Request for Payment', {
     },
 	// get transaction details from reference_name
 	reference_name: function(frm) {
-        frappe.call({
-            async: false,
-            method: "frappe.client.get",
-            args: {
-                "doctype": frm.doc.reference_doctype,
-                "filters": {
-                    'name': frm.doc.reference_name //where Clause
+        if (frm.doc.reference_doctype == "Purchase Order"){
+            frappe.call({
+                async: false,
+                method: "frappe.client.get",
+                args: {
+                    "doctype": frm.doc.reference_doctype,
+                    "filters": {
+                        'name': frm.doc.reference_name //where Clause
+                    },
+                    "fieldname": ['rounded_total','advance_paid']
                 },
-                "fieldname": ['rounded_total','advance_paid']
-            },
-            callback: function (res) {
-                if (res.message !== undefined) {
-                    var value=res.message;
-                    frm.set_value('rounded_total', value.rounded_total)
-                    frm.set_value('advance_paid', value.advance_paid)
-                    frm.set_value('outstanding_amount', value.rounded_total - value.advance_paid)
-                    frm.set_value('paid_amount', frm.doc.outstanding_amount)
+                callback: function (res) {
+                    if (res.message !== undefined) {
+                        var value=res.message;
+                        frm.set_value('rounded_total', value.rounded_total)
+                        frm.set_value('advance_paid', value.advance_paid)
+                        frm.set_value('outstanding_amount', value.rounded_total - value.advance_paid)
+                        frm.set_value('paid_amount', frm.doc.outstanding_amount)
+                    }
                 }
-            }
-        })
+            })
+        }
+        else if(frm.doc.reference_doctype == "Purchase Invoice"){
+            frappe.call({
+                async: false,
+                method: "frappe.client.get",
+                args: {
+                    "doctype": frm.doc.reference_doctype,
+                    "filters": {
+                        'name': frm.doc.reference_name //where Clause
+                    },
+                    "fieldname": ['rounded_total', 'total_advance', 'outstanding_amount']
+                },
+                callback: function (res) {
+                    if (res.message !== undefined) {
+                        var value=res.message;
+                        frm.set_value('rounded_total', value.rounded_total)
+                        frm.set_value('advance_paid', value.total_advance)
+                        frm.set_value('outstanding_amount', value.outstanding_amount)
+                        frm.set_value('paid_amount', value.outstanding_amount)
+                    }
+                }
+            })
+        }
     },
 
 	// outstanding_amount will change
     rounded_total: function(frm) {
-        frm.set_value('outstanding_amount', frm.doc.rounded_total - frm.doc.advance_paid)
+        if (frm.doc.reference_doctype == "Purchase Order"){
+            frm.set_value('outstanding_amount', frm.doc.rounded_total - frm.doc.advance_paid)
+        }
     },
 
 	// rounded_total & outstanding_amount will change
     advance_paid: function(frm) {
-        frm.set_value('outstanding_amount', frm.doc.rounded_total - frm.doc.advance_paid)
-        frm.set_value('rounded_total', frm.doc.advance_paid + frm.doc.outstanding_amount)
+        if (frm.doc.reference_doctype == "Purchase Order"){
+            frm.set_value('outstanding_amount', frm.doc.rounded_total - frm.doc.advance_paid)
+            frm.set_value('rounded_total', frm.doc.advance_paid + frm.doc.outstanding_amount)
+        }
     },
 
 	// paid_amount will change
@@ -144,13 +228,15 @@ frappe.ui.form.on('Request for Payment', {
 
 	// paid_amount will change
 	paid_percent: function(frm) {
-        if(frm.doc.paid_percent > 0){
+        if(frm.doc.paid_percent > 0 && frm.doc.paid_percent < 100){
             frm.set_value('paid_amount', (frm.doc.outstanding_amount * frm.doc.paid_percent) / 100)
         }
         if (frm.doc.paid_percent > 100){
-            frm.set_value('paid_percent', 0)
-            frm.set_value('paid_amount', 0)
-            frappe.throw('Percentage value must be less than or equal to 100')
+            if (frm.doc.references[0].reference_doctype != 'Indent'){
+                frm.set_value('paid_percent', 0)
+                frm.set_value('paid_amount', 0)
+                frappe.throw('Percentage value must be less than or equal to 100')
+            }
         }
     },
 
