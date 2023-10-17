@@ -7,56 +7,56 @@ frappe.ui.form.on('Request for Payment',  {
             frm.set_value('party_type', 'Supplier')
         }
         var rounded_total = 0
-        if (frm.doc.docstatus == 0){
-            cur_frm.add_custom_button(__("Indent"), function() {
-                new frappe.ui.form.MultiSelectDialog({
-                    doctype: "Indent",
-                    target: cur_frm.doc.name,
-                    setters: {
-                        posting_date: null
-                    },
-                    add_filters_group: 1,
-                    date_field: "posting_date",
-                    get_query() {
-                        return {
-                            filters: { docstatus: ['=', 1], travel: ['!=', 1], workflow_state: ['=', 'Approved']}
-                        }
-                    },
-                    action(selections) {
-                        const iterator = selections.values();
-                        cur_frm.clear_table("references");
-                        for (const value of iterator) {
-                            frappe.call({
-                                async: false,
-                                method: "frappe.client.get_value",
-                                args: {
-                                    doctype: "Indent",
-                                    fieldname: 'total_amount',
-                                    filters: {
-                                        name: value
-                                    }
-                                },
-                                callback: function(r) {
-                                    if (r.message) {
-                                        cur_frm.add_child("references", { 
-                                            reference_doctype: 'Indent',
-                                            reference_name: value,
-                                            amount: r.message.total_amount
-                                        })
-                                        rounded_total += r.message.total_amount
-                                    }
-                                }
-                            });
-                        }
-                        cur_frm.set_value('rounded_total', rounded_total)
-                        cur_frm.set_value('outstanding_amount', rounded_total)
-                        cur_frm.set_value('paid_amount', rounded_total)    
-                        cur_frm.refresh_field("references");
-                        cur_dialog.hide();
-                    }
-                });
-            }, __("Get Items From"));
-        }
+        // if (frm.doc.docstatus == 0){
+        //     cur_frm.add_custom_button(__("Indent"), function() {
+        //         new frappe.ui.form.MultiSelectDialog({
+        //             doctype: "Indent",
+        //             target: cur_frm.doc.name,
+        //             setters: {
+        //                 posting_date: null
+        //             },
+        //             add_filters_group: 1,
+        //             date_field: "posting_date",
+        //             get_query() {
+        //                 return {
+        //                     filters: { docstatus: ['=', 1], travel: ['!=', 1], workflow_state: ['=', 'Approved']}
+        //                 }
+        //             },
+        //             action(selections) {
+        //                 const iterator = selections.values();
+        //                 cur_frm.clear_table("references");
+        //                 for (const value of iterator) {
+        //                     frappe.call({
+        //                         async: false,
+        //                         method: "frappe.client.get_value",
+        //                         args: {
+        //                             doctype: "Indent",
+        //                             fieldname: 'total_amount',
+        //                             filters: {
+        //                                 name: value
+        //                             }
+        //                         },
+        //                         callback: function(r) {
+        //                             if (r.message) {
+        //                                 cur_frm.add_child("references", { 
+        //                                     reference_doctype: 'Indent',
+        //                                     reference_name: value,
+        //                                     amount: r.message.total_amount
+        //                                 })
+        //                                 rounded_total += r.message.total_amount
+        //                             }
+        //                         }
+        //                     });
+        //                 }
+        //                 cur_frm.set_value('rounded_total', rounded_total)
+        //                 cur_frm.set_value('outstanding_amount', rounded_total)
+        //                 cur_frm.set_value('paid_amount', rounded_total)    
+        //                 cur_frm.refresh_field("references");
+        //                 cur_dialog.hide();
+        //             }
+        //         });
+        //     }, __("Get Items From"));
+        // }
 		if(frm.doc.party_name){
             frm.set_query('reference_name', function() {
                 return {
