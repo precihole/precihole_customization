@@ -4,7 +4,7 @@ frappe.ui.form.on('Purchase Order',  {
             frm.remove_custom_button('Payment Request', 'Create'); //hide
         }, 1000);
 
-        if(frm.doc.rounded_total !== frm.doc.advance_paid){
+        if(frm.doc.rounded_total !== frm.doc.advance_paid && frm.doc.status != "Completed"){
             frm.add_custom_button(__('Request for Payment'), function(){
                 frappe.call({
                     method: "precihole.precihole.doctype.request_for_payment.request_for_payment.get_request_for_payment_flag",
