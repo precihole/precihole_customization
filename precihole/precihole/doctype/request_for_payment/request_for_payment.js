@@ -266,5 +266,10 @@ frappe.ui.form.on('Request for Payment',  {
         else{
             frm.set_df_property('paid_amount', 'read_only', 1) //read-only
         }
-    }
+    },
+    before_workflow_action: async (frm) => {
+        if (frm.doc.workflow_state == "Approved" && frm.selected_workflow_action == "Reject" && frm.doc.reject_remark == undefined){
+            frappe.throw('Reject Remark is mandatory')
+        }
+    },
 });
