@@ -12,7 +12,7 @@ frappe.ui.form.on('Purchase Invoice',  {
                 },
                 callback: function (res) {
                     if(frm.doc.outstanding_amount == res.message[0]){
-                        frappe.throw('Payment request has already been generated for the amount specified in the purchase order.')
+                        frappe.throw('Payment request has already been generated for the amount specified in the purchase invoice.')
                     }
                     else{
                         frappe.run_serially([ 
