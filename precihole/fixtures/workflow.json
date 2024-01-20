@@ -961,7 +961,7 @@
   "is_active": 1,
   "modified": "2023-03-02 12:11:14.535611",
   "name": "Expense Claim",
-  "override_status": 0,
+  "override_status": 1,
   "send_email_alert": 0,
   "states": [
    {
