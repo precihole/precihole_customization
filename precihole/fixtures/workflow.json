@@ -1182,8 +1182,8 @@
     "parentfield": "states",
     "parenttype": "Workflow",
     "state": "Rejected",
-    "update_field": "status",
-    "update_value": "Rejected"
+    "update_field": "",
+    "update_value": ""
    },
    {
     "allow_edit": "All",
@@ -1261,6 +1261,17 @@
     "allowed": "All",
     "condition": null,
     "next_state": "Cancelled",
+    "parent": "Request for Payment",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Accounts User",
+    "condition": null,
+    "next_state": "Rejected",
     "parent": "Request for Payment",
     "parentfield": "transitions",
     "parenttype": "Workflow",
