@@ -2,44 +2,16 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 17:09:21.391559",
-  "name": "Upload",
-  "workflow_action_name": "Upload"
+  "modified": "2023-01-22 14:39:20.383277",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2023-03-09 17:20:45.321633",
-  "name": "Disable",
-  "workflow_action_name": "Disable"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-03-09 17:20:59.213281",
-  "name": "Draft",
-  "workflow_action_name": "Draft"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-05-10 11:24:37.717409",
-  "name": "Send for Approval",
-  "workflow_action_name": "Send for Approval"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-07-19 13:10:21.279620",
-  "name": "Test",
-  "workflow_action_name": "Test"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-08-01 12:52:00.512098",
-  "name": "Reclarify",
-  "workflow_action_name": "Reclarify"
+  "modified": "2023-01-22 14:39:20.386901",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  },
  {
   "docstatus": 0,
@@ -51,6 +23,13 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:08.549678",
+  "name": "Submit",
+  "workflow_action_name": "Submit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2023-01-23 11:28:24.161316",
   "name": "Rate Approve",
   "workflow_action_name": "Rate Approve"
@@ -58,9 +37,58 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:40.953759",
+  "name": "Create PO",
+  "workflow_action_name": "Create PO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:49.154904",
+  "name": "Close",
+  "workflow_action_name": "Close"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:28:57.390183",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2023-01-23 11:29:06.412796",
   "name": "Partially Received",
   "workflow_action_name": "Partially Received"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:29:17.110023",
+  "name": "To Bill",
+  "workflow_action_name": "To Bill"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:29:26.174411",
+  "name": "Paid",
+  "workflow_action_name": "Paid"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:30:40.581584",
+  "name": "Accept",
+  "workflow_action_name": "Accept"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2023-01-23 11:30:47.765773",
+  "name": "Reassign",
+  "workflow_action_name": "Reassign"
  },
  {
   "docstatus": 0,
@@ -96,82 +124,5 @@
   "modified": "2023-01-23 16:50:17.036305",
   "name": "Issue Raise To Erpnext",
   "workflow_action_name": "Issue Raise To Erpnext"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:28:40.953759",
-  "name": "Create PO",
-  "workflow_action_name": "Create PO"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:29:17.110023",
-  "name": "To Bill",
-  "workflow_action_name": "To Bill"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:29:26.174411",
-  "name": "Paid",
-  "workflow_action_name": "Paid"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:30:40.581584",
-  "name": "Accept",
-  "workflow_action_name": "Accept"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:30:47.765773",
-  "name": "Reassign",
-  "workflow_action_name": "Reassign"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-05-29 16:09:56.814089",
-  "name": "Re-open",
-  "workflow_action_name": "Re-open"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:28:49.154904",
-  "name": "Close",
-  "workflow_action_name": "Close"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:28:08.549678",
-  "name": "Submit",
-  "workflow_action_name": "Submit"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-23 11:28:57.390183",
-  "name": "Cancel",
-  "workflow_action_name": "Cancel"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-22 14:39:20.383277",
-  "name": "Approve",
-  "workflow_action_name": "Approve"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2023-01-22 14:39:20.386901",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
  }
 ]
