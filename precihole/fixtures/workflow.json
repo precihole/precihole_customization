@@ -3,14 +3,15 @@
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Indent",
-  "is_active": 1,
-  "modified": "2023-05-30 11:19:31.834255",
+  "is_active": 0,
+  "modified": "2024-01-14 11:27:00.881538",
   "name": "Indent",
   "override_status": 0,
   "send_email_alert": 0,
   "states": [
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -20,10 +21,12 @@
     "parenttype": "Workflow",
     "state": "Open",
     "update_field": "workflow_state",
-    "update_value": "Open"
+    "update_value": "Open",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -33,10 +36,12 @@
     "parenttype": "Workflow",
     "state": "Rate Updation Pending",
     "update_field": "workflow_state",
-    "update_value": "Rate Updation Pending"
+    "update_value": "Rate Updation Pending",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -46,10 +51,12 @@
     "parenttype": "Workflow",
     "state": "HOD Approval Pending",
     "update_field": "workflow_state",
-    "update_value": "HOD Approval Pending"
+    "update_value": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -59,10 +66,12 @@
     "parenttype": "Workflow",
     "state": "Management Approval Pending",
     "update_field": "workflow_state",
-    "update_value": "Management Approval Pending"
+    "update_value": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -72,10 +81,12 @@
     "parenttype": "Workflow",
     "state": "Accept / Reassign",
     "update_field": "workflow_state",
-    "update_value": "Accept / Reassign"
+    "update_value": "Accept / Reassign",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -85,10 +96,12 @@
     "parenttype": "Workflow",
     "state": "Approved",
     "update_field": "workflow_state",
-    "update_value": "Approved"
+    "update_value": "Approved",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -98,10 +111,12 @@
     "parenttype": "Workflow",
     "state": "To Receive and Bill",
     "update_field": "workflow_state",
-    "update_value": "To Receive and Bill"
+    "update_value": "To Receive and Bill",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -111,10 +126,12 @@
     "parenttype": "Workflow",
     "state": "Rejected",
     "update_field": "workflow_state",
-    "update_value": "Rejected"
+    "update_value": "Rejected",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -124,10 +141,12 @@
     "parenttype": "Workflow",
     "state": "To Bill",
     "update_field": "workflow_state",
-    "update_value": "To Bill"
+    "update_value": "To Bill",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -137,10 +156,12 @@
     "parenttype": "Workflow",
     "state": "Paid",
     "update_field": "workflow_state",
-    "update_value": "Paid"
+    "update_value": "Paid",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -150,10 +171,12 @@
     "parenttype": "Workflow",
     "state": "Partially Received",
     "update_field": "workflow_state",
-    "update_value": "Partially Received"
+    "update_value": "Partially Received",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -163,10 +186,12 @@
     "parenttype": "Workflow",
     "state": "Partially Paid",
     "update_field": "workflow_state",
-    "update_value": "Partially Paid"
+    "update_value": "Partially Paid",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -176,10 +201,12 @@
     "parenttype": "Workflow",
     "state": "Completed",
     "update_field": "workflow_state",
-    "update_value": "Completed"
+    "update_value": "Completed",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -189,10 +216,12 @@
     "parenttype": "Workflow",
     "state": "Closed",
     "update_field": "workflow_state",
-    "update_value": "Closed"
+    "update_value": "Closed",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "2",
     "is_optional_state": 0,
     "message": null,
@@ -202,7 +231,8 @@
     "parenttype": "Workflow",
     "state": "Cancelled",
     "update_field": "workflow_state",
-    "update_value": "Cancelled"
+    "update_value": "Cancelled",
+    "workflow_builder_id": null
    }
   ],
   "transitions": [
@@ -215,7 +245,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Open"
+    "state": "Open",
+    "workflow_builder_id": null
    },
    {
     "action": "Submit",
@@ -226,7 +257,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Open"
+    "state": "Open",
+    "workflow_builder_id": null
    },
    {
     "action": "Submit",
@@ -237,7 +269,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Rate Updation Pending"
+    "state": "Rate Updation Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -248,7 +281,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -259,7 +293,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -270,7 +305,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -281,7 +317,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -292,7 +329,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -303,7 +341,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Accept",
@@ -314,7 +353,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Accept / Reassign"
+    "state": "Accept / Reassign",
+    "workflow_builder_id": null
    },
    {
     "action": "Reassign",
@@ -325,7 +365,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Accept / Reassign"
+    "state": "Accept / Reassign",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -336,7 +377,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Accept / Reassign"
+    "state": "Accept / Reassign",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -347,7 +389,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -358,7 +401,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -369,7 +413,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -380,7 +425,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -391,7 +437,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -402,7 +449,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Create PO",
@@ -413,7 +461,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved"
+    "state": "Approved",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -424,7 +473,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved"
+    "state": "Approved",
+    "workflow_builder_id": null
    },
    {
     "action": "To Bill",
@@ -435,7 +485,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Receive and Bill"
+    "state": "To Receive and Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Close",
@@ -446,7 +497,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Receive and Bill"
+    "state": "To Receive and Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -457,7 +509,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Receive and Bill"
+    "state": "To Receive and Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Paid",
@@ -468,7 +521,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Bill"
+    "state": "To Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Close",
@@ -479,7 +533,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Bill"
+    "state": "To Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -490,7 +545,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "To Bill"
+    "state": "To Bill",
+    "workflow_builder_id": null
    },
    {
     "action": "Re-open",
@@ -501,7 +557,8 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Closed"
+    "state": "Closed",
+    "workflow_builder_id": null
    },
    {
     "action": "Re-open",
@@ -512,9 +569,11 @@
     "parent": "Indent",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Closed"
+    "state": "Closed",
+    "workflow_builder_id": null
    }
   ],
+  "workflow_data": null,
   "workflow_name": "Indent",
   "workflow_state_field": "workflow_state"
  },
@@ -530,6 +589,7 @@
   "states": [
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -539,10 +599,12 @@
     "parenttype": "Workflow",
     "state": "Draft",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -552,10 +614,12 @@
     "parenttype": "Workflow",
     "state": "Account Review",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -565,10 +629,12 @@
     "parenttype": "Workflow",
     "state": "Approved",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -578,10 +644,12 @@
     "parenttype": "Workflow",
     "state": "Created",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -591,10 +659,12 @@
     "parenttype": "Workflow",
     "state": "Rejected",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "2",
     "is_optional_state": 0,
     "message": null,
@@ -604,10 +674,12 @@
     "parenttype": "Workflow",
     "state": "Cancelled",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -617,7 +689,8 @@
     "parenttype": "Workflow",
     "state": "Clarify",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    }
   ],
   "transitions": [
@@ -630,7 +703,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Draft"
+    "state": "Draft",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -641,7 +715,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Account Review"
+    "state": "Account Review",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -652,7 +727,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Account Review"
+    "state": "Account Review",
+    "workflow_builder_id": null
    },
    {
     "action": "Clarify",
@@ -663,7 +739,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Account Review"
+    "state": "Account Review",
+    "workflow_builder_id": null
    },
    {
     "action": "Account Review",
@@ -674,7 +751,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Clarify"
+    "state": "Clarify",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -685,7 +763,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved"
+    "state": "Approved",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -696,7 +775,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Approved"
+    "state": "Approved",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -707,7 +787,8 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Created"
+    "state": "Created",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -718,9 +799,11 @@
     "parent": "Item Code Request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Rejected"
+    "state": "Rejected",
+    "workflow_builder_id": null
    }
   ],
+  "workflow_data": null,
   "workflow_name": "Item Code Request",
   "workflow_state_field": "workflow_state"
  },
@@ -736,6 +819,7 @@
   "states": [
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -745,10 +829,12 @@
     "parenttype": "Workflow",
     "state": "Draft",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -758,10 +844,12 @@
     "parenttype": "Workflow",
     "state": "Pending",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -771,10 +859,12 @@
     "parenttype": "Workflow",
     "state": "Work in Process",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -784,10 +874,12 @@
     "parenttype": "Workflow",
     "state": "Resolved",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -797,10 +889,12 @@
     "parenttype": "Workflow",
     "state": "Unresolved",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "2",
     "is_optional_state": 0,
     "message": null,
@@ -810,10 +904,12 @@
     "parenttype": "Workflow",
     "state": "Cancelled",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -823,10 +919,12 @@
     "parenttype": "Workflow",
     "state": "Rejected",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "System Manager",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -836,7 +934,8 @@
     "parenttype": "Workflow",
     "state": "Issue Raised To Erpnext",
     "update_field": null,
-    "update_value": null
+    "update_value": null,
+    "workflow_builder_id": null
    }
   ],
   "transitions": [
@@ -849,7 +948,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Draft"
+    "state": "Draft",
+    "workflow_builder_id": null
    },
    {
     "action": "Issue Resolved",
@@ -860,7 +960,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Pending"
+    "state": "Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -871,7 +972,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Pending"
+    "state": "Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Work in Process",
@@ -882,7 +984,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Pending"
+    "state": "Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Issue Raise To Erpnext",
@@ -893,7 +996,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Pending"
+    "state": "Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Issue Resolved",
@@ -904,7 +1008,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Issue Raised To Erpnext"
+    "state": "Issue Raised To Erpnext",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -915,7 +1020,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Issue Raised To Erpnext"
+    "state": "Issue Raised To Erpnext",
+    "workflow_builder_id": null
    },
    {
     "action": "Issue Resolved",
@@ -926,7 +1032,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Work in Process"
+    "state": "Work in Process",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -937,7 +1044,8 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Work in Process"
+    "state": "Work in Process",
+    "workflow_builder_id": null
    },
    {
     "action": "Cancel",
@@ -948,9 +1056,11 @@
     "parent": "Erpnext Issue",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Resolved"
+    "state": "Resolved",
+    "workflow_builder_id": null
    }
   ],
+  "workflow_data": null,
   "workflow_name": "Erpnext Issue",
   "workflow_state_field": "workflow_state"
  },
@@ -966,6 +1076,7 @@
   "states": [
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -975,10 +1086,12 @@
     "parenttype": "Workflow",
     "state": "HOD Approval Pending",
     "update_field": "workflow_state",
-    "update_value": "HOD Approval Pending"
+    "update_value": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -988,10 +1101,12 @@
     "parenttype": "Workflow",
     "state": "Management Approval Pending",
     "update_field": "approval_status",
-    "update_value": "Approved"
+    "update_value": "Approved",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -1001,10 +1116,12 @@
     "parenttype": "Workflow",
     "state": "Expense Executive Pending",
     "update_field": "approval_status",
-    "update_value": "Approved"
+    "update_value": "Approved",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -1014,10 +1131,12 @@
     "parenttype": "Workflow",
     "state": "Completed",
     "update_field": "workflow_state",
-    "update_value": "Completed"
+    "update_value": "Completed",
+    "workflow_builder_id": null
    },
    {
     "allow_edit": "All",
+    "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
     "message": null,
@@ -1027,7 +1146,8 @@
     "parenttype": "Workflow",
     "state": "Rejected",
     "update_field": "workflow_state",
-    "update_value": "Rejected"
+    "update_value": "Rejected",
+    "workflow_builder_id": null
    }
   ],
   "transitions": [
@@ -1040,7 +1160,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -1051,7 +1172,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -1062,7 +1184,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -1073,7 +1196,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "HOD Approval Pending"
+    "state": "HOD Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -1084,7 +1208,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -1095,7 +1220,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Management Approval Pending"
+    "state": "Management Approval Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Approve",
@@ -1106,7 +1232,8 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Expense Executive Pending"
+    "state": "Expense Executive Pending",
+    "workflow_builder_id": null
    },
    {
     "action": "Reject",
@@ -1117,157 +1244,12 @@
     "parent": "Expense Claim",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Expense Executive Pending"
+    "state": "Expense Executive Pending",
+    "workflow_builder_id": null
    }
   ],
+  "workflow_data": null,
   "workflow_name": "Expense Claim",
-  "workflow_state_field": "workflow_state"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow",
-  "document_type": "Request for Payment",
-  "is_active": 1,
-  "modified": "2023-05-30 11:38:07.316177",
-  "name": "Request for Payment",
-  "override_status": 1,
-  "send_email_alert": 0,
-  "states": [
-   {
-    "allow_edit": "All",
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Request for Payment",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Draft",
-    "update_field": "",
-    "update_value": ""
-   },
-   {
-    "allow_edit": "All",
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Request for Payment",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Approval Pending",
-    "update_field": "",
-    "update_value": ""
-   },
-   {
-    "allow_edit": "All",
-    "doc_status": "1",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Request for Payment",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Approved",
-    "update_field": "status",
-    "update_value": "Initiated"
-   },
-   {
-    "allow_edit": "All",
-    "doc_status": "1",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Request for Payment",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Rejected",
-    "update_field": "status",
-    "update_value": "Rejected"
-   },
-   {
-    "allow_edit": "All",
-    "doc_status": "2",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Request for Payment",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Cancelled",
-    "update_field": "status",
-    "update_value": "Cancelled"
-   }
-  ],
-  "transitions": [
-   {
-    "action": "Submit",
-    "allow_self_approval": 1,
-    "allowed": "All",
-    "condition": null,
-    "next_state": "Approval Pending",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Draft"
-   },
-   {
-    "action": "Approve",
-    "allow_self_approval": 1,
-    "allowed": "CEO - PAPL",
-    "condition": null,
-    "next_state": "Approved",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approval Pending"
-   },
-   {
-    "action": "Reject",
-    "allow_self_approval": 1,
-    "allowed": "CEO - PAPL",
-    "condition": null,
-    "next_state": "Rejected",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approval Pending"
-   },
-   {
-    "action": "Approve",
-    "allow_self_approval": 1,
-    "allowed": "Authorized Signatory (Dr. Yogendra Shirsat)",
-    "condition": null,
-    "next_state": "Approved",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approval Pending"
-   },
-   {
-    "action": "Reject",
-    "allow_self_approval": 1,
-    "allowed": "Authorized Signatory (Dr. Yogendra Shirsat)",
-    "condition": null,
-    "next_state": "Rejected",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approval Pending"
-   },
-   {
-    "action": "Cancel",
-    "allow_self_approval": 1,
-    "allowed": "All",
-    "condition": null,
-    "next_state": "Cancelled",
-    "parent": "Request for Payment",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved"
-   }
-  ],
-  "workflow_name": "Request for Payment",
   "workflow_state_field": "workflow_state"
  }
 ]
